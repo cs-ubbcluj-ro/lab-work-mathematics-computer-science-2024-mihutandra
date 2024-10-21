@@ -1,0 +1,113 @@
+Language Specification
+
+ 1 .Language Definition:
+
+  1.1 Alphabet
+
+      a. lower case letters (a-z) of the romanian alphabet (with ăîșțâ)
+
+      b. Underline character ‘_';
+
+      c. Decimal digits (0-9);
+
+      d. Minus character ‘-‘;
+
+  1.2 Lexic
+
+   Operators
+        + - * / < <= = >= *= += -= /=  == && || !
+
+    Separators
+          [ ] { } ; space
+
+    Reserved words
+        șir, întreg, caracter, dacă, altfel, constanta, execută, cât, citește, afișează, bool, returnează, pentru
+    (   string, int, char,         if,     else,    const,         do,     while,    cin,    cout,     bool, return, for )
+
+     IDENTIFIERS
+          identifier ::= letter | letter{letter}{digit}
+          letter ::= "a" | "b" |...| “z” | ”ă” | ”î” | ”ș” | ”ț” | ”â” 
+          digit ::= "0" | "1" |...| "9"
+          bool ::= "adevărat" | “fals”
+          nonzerodigit ::=  "1" |...| "9"
+          digits ::= digit | nonzerodigit digits
+
+    CONSTANTS
+        int:=+number|-number|number
+        number:=digit{number}
+        char:=digit|letter 
+
+    STRINGS
+        string:=" ' "char{string}" ' "
+        char:=letter|digit
+
+
+
+2 .Syntax:
+
+    type ::= "caracter"|"întreg"|"șir"|"bool"
+    relation ::= "<" | "<=" | "=" | "<>" | ">=" | “>"
+    op1 = ‘+’ | ‘-‘
+    op2 = ‘*’ | ‘/‘ | ‘//‘ | ‘%’
+    expression ::= expression op1 term | term
+    term ::= term op2 factor | factor
+    factor ::= ‘(‘expression ‘)’ | identifier
+    condition ::= expression relation expression 
+    dimension ::= ‘[‘size’]’
+    size:= digits
+
+    array_definition ::= type identifier ‘[‘dimension’]’ ’;'
+   
+    definition ::= type identifier’;’ | array_definition
+
+    assignment ::= identifier ‘=‘ expression’;’
+ 
+    io_statement ::= “citește(“identifier “);” | “afișează(“identifier”);”
+
+    atomic_statement ::= (definition | assignment | io_atomic_statement ){atomic_statement}
+
+    if_statement ::= "dacă" "(" condition ")" "{" atomic_statement "}" ["altfel" "{" atomic_statement "}"  ]
+
+    while_statement ::= "cât(" condition "){" atomic_statement “}"
+
+    do_while_statem ::= "execută" "{" atomic_statement "}" "cât" "(" condition ")" ";"
+
+    statement ::= atomic_statement | if_statement | while_statement | do_while
+
+    struct ::= "structură" identifier "{" {declaration} "}"
+
+    program ::= {definition}{statement}
+
+
+
+ 3 .Small program:
+
+întreg este_prim(întreg n) {
+    întreg i;
+    dacă (n <= 1) {
+        returnează fals;
+    }
+    pentru (i = 2; i * i <= n; i += 1) {
+        dacă (n % i == 0) {
+            returnează fals;
+        }
+    }
+    returnează adevărat;
+}
+
+
+    întreg k, count, num;
+    citește(k);  
+   
+    count = 0;
+    num = 2;
+
+    cât (count < k) {
+        dacă (este_prim(num) == adevărat) {
+            afișează(num); 
+           count += 1;
+        }
+        num += 1;
+    }
+}
+
