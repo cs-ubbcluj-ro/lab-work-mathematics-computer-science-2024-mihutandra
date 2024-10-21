@@ -23,21 +23,23 @@ Language Specification
     (  string, int,   char,    if,     else,    const,   do,     while,  cin,    cout,  bool,   return,     for )
 
      IDENTIFIERS
-          identifier ::= letter | letter{letter}{digit}
-          letter ::= "a" | "b" |...| “z” | ”ă” | ”î” | ”ș” | ”ț” | ”â” 
-          digit ::= "0" | "1" |...| "9"
-          bool ::= "adevărat" | “fals”
-          nonzerodigit ::=  "1" |...| "9"
-          digits ::= digit | nonzerodigit digits
+            identifier ::= letter | letter {letter | digit}
+            letter ::= "a" | "b" |...| “z” | ”ă” | ”î” | ”ș” | ”ț” | ”â”
+            digit ::= "0" | "1" |...| "9"
+            bool ::= "adevărat" | "fals"
+            nonzerodigit ::= "1" |...| "9"
+            digits ::= nonzerodigit {digit} | "0"  
+
 
     CONSTANTS
-        int:=+number|-number|number
-        number:=digit{number}
-        char:=digit|letter 
+            int ::= +number | -number | number
+            number ::= nonzerodigit {digit} | "0"  
+            char ::= digit | letter
+
 
     STRINGS
-        string:=" ' "char{string}" ' "
-        char:=letter|digit
+            string:=" ' "char{string}" ' "
+            char:=letter|digit
 
 
 
