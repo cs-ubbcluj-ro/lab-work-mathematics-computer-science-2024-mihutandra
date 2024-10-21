@@ -10,8 +10,6 @@ Language Specification
 
       c. Decimal digits (0-9);
 
-      d. Minus character ‘-‘;
-
   1.2 Lexic
 
    Operators
