@@ -22,7 +22,7 @@ Language Specification
 
     Reserved words
         șir, întreg, caracter, dacă, altfel, constanta, execută, cât, citește, afișează, bool, returnează, pentru
-    (   string, int, char,         if,     else,    const,         do,     while,    cin,    cout,     bool, return, for )
+    (  string, int,   char,    if,     else,    const,   do,     while,  cin,    cout,  bool,   return,     for )
 
      IDENTIFIERS
           identifier ::= letter | letter{letter}{digit}
