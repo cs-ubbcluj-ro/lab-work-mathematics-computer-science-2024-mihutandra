@@ -46,13 +46,13 @@ Language Specification
 2 .Syntax:
 
     type ::= "caracter"|"întreg"|"șir"|"bool"
-    relation ::= "<" | "<=" | "=" | "<>" | ">=" | “>"
+    relation ::= "<" | "<=" | "==" | "<>" | ">=" | “>" | "-!=" 
     op1 = ‘+’ | ‘-‘
     op2 = ‘*’ | ‘/‘ | ‘//‘ | ‘%’
     expression ::= expression op1 term | term
     term ::= term op2 factor | factor
     factor ::= ‘(‘expression ‘)’ | identifier
-    condition ::= expression relation expression 
+    condition ::= expression relation expression | func_call
     dimension ::= ‘[‘size’]’
     size:= digits
 
@@ -77,6 +77,8 @@ Language Specification
     struct ::= "structură" identifier "{" {declaration} "}"
 
     program ::= {definition}{statement}
+
+    func_call ::= identifier ‘(’ [argument {',' argument}] ’)’
 
 
 
