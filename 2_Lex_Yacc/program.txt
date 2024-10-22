@@ -1,0 +1,9 @@
+întreg x;
+șir y = "abccd"
+x = 10;
+dacă (x > 5) {
+    afișează(x);
+}
+dacă (x==10){
+    y = "abc";
+}
