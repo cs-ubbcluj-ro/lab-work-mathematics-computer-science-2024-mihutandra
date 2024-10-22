@@ -1,0 +1,3 @@
+lex ./2_Lex_Yacc/lex-analizer.l
+gcc lex.yy.c
+./a.out ./2_Lex_Yacc/program.txt
