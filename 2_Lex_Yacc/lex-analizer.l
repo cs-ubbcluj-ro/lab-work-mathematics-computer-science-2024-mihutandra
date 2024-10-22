@@ -76,7 +76,9 @@ altfel                                   { addToPIF(yytext, -1); }
 întreg                                   { addToPIF(yytext, -1); }
 șir                                      { addToPIF(yytext, -1); }
 bool                                     { addToPIF(yytext, -1); }
+caracter                                 { addToPIF(yytext, -1); }
 cât                                      { addToPIF(yytext, -1); }
+pentru                                   { addToPIF(yytext, -1); }
 execută                                  { addToPIF(yytext, -1); }
 returnează                               { addToPIF(yytext, -1); }
 afișează                                 { addToPIF(yytext, -1); }
