@@ -22,14 +22,14 @@ int errorFound = 0;
 int lineNumber = 1;
 
 /* Function Definition */
-int addToST(char* token);
-void addToPIF(char* token, int stCode);
+int addToSymbolTable(char* token);
+void addToProgramInternalForm(char* token, int stCode);
 void showSymbolTable();
 void showProgramInternalForm();
 
 /* Functions */
 
-int addToST(char* token) {
+int addToSymbolTable(char* token) {
     for(int i = 0; i < stLength; i++) {
         if(strcmp(SymbolTable[i].token, token) == 0) {
             return SymbolTable[i].index;
@@ -43,7 +43,7 @@ int addToST(char* token) {
     return stLength - 1; /* returns the index of the newly added token */
 }
 
-void addToPIF(char* token, int stCode) {
+void addToProgramInternalForm(char* token, int stCode) {
     strcpy(ProgramInternalForm[pifLength].token, token);
     ProgramInternalForm[pifLength].symbolTableCode = stCode;
     pifLength++;
@@ -74,25 +74,25 @@ STRING     \"[^\"]*\"
 
 /*** Rule Section ***/
 %%
-dacă                                     { addToPIF(yytext, -1); }
-altfel                                   { addToPIF(yytext, -1); }
-întreg                                   { addToPIF(yytext, -1); }
-șir                                      { addToPIF(yytext, -1); }
-bool                                     { addToPIF(yytext, -1); }
-caracter                                 { addToPIF(yytext, -1); }
-cât                                      { addToPIF(yytext, -1); }
-pentru                                   { addToPIF(yytext, -1); }
-execută                                  { addToPIF(yytext, -1); }
-returnează                               { addToPIF(yytext, -1); }
-afișează                                 { addToPIF(yytext, -1); }
-citește                                  { addToPIF(yytext, -1); }
-[=+\-*/%]                                { addToPIF(yytext, -1); }
-[<>=!]=?                                 { addToPIF(yytext, -1); }
-[\(\)\{\};,]                             { addToPIF(yytext, -1); }
+dacă                                     { addToProgramInternalForm(yytext, -1); }
+altfel                                   { addToProgramInternalForm(yytext, -1); }
+întreg                                   { addToProgramInternalForm(yytext, -1); }
+șir                                      { addToProgramInternalForm(yytext, -1); }
+bool                                     { addToProgramInternalForm(yytext, -1); }
+caracter                                 { addToProgramInternalForm(yytext, -1); }
+cât                                      { addToProgramInternalForm(yytext, -1); }
+pentru                                   { addToProgramInternalForm(yytext, -1); }
+execută                                  { addToProgramInternalForm(yytext, -1); }
+returnează                               { addToProgramInternalForm(yytext, -1); }
+afișează                                 { addToProgramInternalForm(yytext, -1); }
+citește                                  { addToProgramInternalForm(yytext, -1); }
+[=+\-*/%]                                { addToProgramInternalForm(yytext, -1); }
+[<>=!]=?                                 { addToProgramInternalForm(yytext, -1); }
+[\(\)\{\};,]                             { addToProgramInternalForm(yytext, -1); }
 
-{IDENTIFIER}                             { int stCode = addToST(yytext); addToPIF(yytext, stCode); }
-{NUMBER}                                 { int stCode = addToST(yytext); addToPIF(yytext, stCode); }
-{STRING}                                 { int stCode = addToST(yytext); addToPIF(yytext, stCode); }
+{IDENTIFIER}                             { int stCode = addToSymbolTable(yytext); addToProgramInternalForm(yytext, stCode); }
+{NUMBER}                                 { int stCode = addToSymbolTable(yytext); addToProgramInternalForm(yytext, stCode); }
+{STRING}                                 { int stCode = addToSymbolTable(yytext); addToProgramInternalForm(yytext, stCode); }
 [\n]                                     { ++lineNumber; }
 [ \t\n]+                                 { /* eat up whitespace */ }
 .                                        { errorFound = 1; printf("Illegal token %s at line %d\n", yytext, lineNumber); }

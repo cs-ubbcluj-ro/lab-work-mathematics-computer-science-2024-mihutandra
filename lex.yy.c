@@ -532,14 +532,14 @@ int errorFound = 0;
 int lineNumber = 1;
 
 /* Function Definition */
-int addToST(char* token);
-void addToPIF(char* token, int stCode);
+int addToSymbolTable(char* token);
+void addToProgramInternalForm(char* token, int stCode);
 void showSymbolTable();
 void showProgramInternalForm();
 
 /* Functions */
 
-int addToST(char* token) {
+int addToSymbolTable(char* token) {
     for(int i = 0; i < stLength; i++) {
         if(strcmp(SymbolTable[i].token, token) == 0) {
             return SymbolTable[i].index;
@@ -553,7 +553,7 @@ int addToST(char* token) {
     return stLength - 1; /* returns the index of the newly added token */
 }
 
-void addToPIF(char* token, int stCode) {
+void addToProgramInternalForm(char* token, int stCode) {
     strcpy(ProgramInternalForm[pifLength].token, token);
     ProgramInternalForm[pifLength].symbolTableCode = stCode;
     pifLength++;
@@ -857,93 +857,93 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 77 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 78 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 79 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 80 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 81 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 82 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 83 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 84 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 85 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 86 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 87 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 88 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 89 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 90 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 91 "./2_Lex_Yacc/lex-analizer.l"
-{ addToPIF(yytext, -1); }
+{ addToProgramInternalForm(yytext, -1); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 93 "./2_Lex_Yacc/lex-analizer.l"
-{ int stCode = addToST(yytext); addToPIF(yytext, stCode); }
+{ int stCode = addToSymbolTable(yytext); addToProgramInternalForm(yytext, stCode); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 94 "./2_Lex_Yacc/lex-analizer.l"
-{ int stCode = addToST(yytext); addToPIF(yytext, stCode); }
+{ int stCode = addToSymbolTable(yytext); addToProgramInternalForm(yytext, stCode); }
 	YY_BREAK
 case 18:
 /* rule 18 can match eol */
 YY_RULE_SETUP
 #line 95 "./2_Lex_Yacc/lex-analizer.l"
-{ int stCode = addToST(yytext); addToPIF(yytext, stCode); }
+{ int stCode = addToSymbolTable(yytext); addToProgramInternalForm(yytext, stCode); }
 	YY_BREAK
 case 19:
 /* rule 19 can match eol */
