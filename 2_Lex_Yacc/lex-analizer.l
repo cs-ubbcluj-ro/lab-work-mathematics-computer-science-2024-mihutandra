@@ -1,4 +1,3 @@
-/*** Definition Section ***/
 %{
 #include <string.h>
 #include <stdio.h>
@@ -22,23 +21,26 @@ int pifLength = 0;
 int errorFound = 0;
 int lineNumber = 1;
 
-/* Function prototypes */
+/* Function Definition */
 int addToST(char* token);
 void addToPIF(char* token, int stCode);
 void showSymbolTable();
 void showProgramInternalForm();
 
 /* Functions */
+
 int addToST(char* token) {
     for(int i = 0; i < stLength; i++) {
         if(strcmp(SymbolTable[i].token, token) == 0) {
             return SymbolTable[i].index;
         }
     }
+    /* If the token is not found in the symbol table, the function adds the new token at the end of the table */
+
     strcpy(SymbolTable[stLength].token, token);
     SymbolTable[stLength].index = stLength;
     stLength++;
-    return stLength - 1;
+    return stLength - 1; /* returns the index of the newly added token */
 }
 
 void addToPIF(char* token, int stCode) {
@@ -48,19 +50,20 @@ void addToPIF(char* token, int stCode) {
 }
 
 void showSymbolTable() {
-    printf("~~~~~~~ Symbol Table ~~~~~~~\n");
+    printf("--------------- ST ---------------\n");
     for(int i = 0; i < stLength; i++) {
         printf(" %s  %d\n", SymbolTable[i].token, SymbolTable[i].index);
+        printf("------------------------------\n");
     }
-    printf("~~~~~~~ End Symbol Table ~~~~~~~\n\n");
+    printf("\n\n");
 }
 
 void showProgramInternalForm() {
-    printf("~~~~~~~ Program Internal Form ~~~~~~~\n");
+    printf("--------------- PIF ----------------\n");
     for(int i = 0; i < pifLength; i++) {
         printf(" %s  %d\n", ProgramInternalForm[i].token, ProgramInternalForm[i].symbolTableCode);
+        printf("------------------------------\n");
     }
-    printf("~~~~~~~ End Program Internal Form ~~~~~~~\n\n");
 }
 
 %}
