@@ -104,13 +104,13 @@ int yywrap() {}
 int main(int argc, char** argv) {
     FILE *fp;
     if (argc < 2) {
-        printf("Please provide an input file.\n");
+        printf("provide a file bro.\n");
         return 1;
     }
 
     fp = fopen(argv[1], "r");
     if (!fp) {
-        printf("Failed to open the file %s.\n", argv[1]);
+        printf("mission failed %s.\n", argv[1]);
         return 1;
     }
     
