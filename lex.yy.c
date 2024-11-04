@@ -545,7 +545,7 @@ int addToSymbolTable(char* token) {
             return SymbolTable[i].index;
         }
     }
-    /* If the token is not found in the symbol table, the function adds the new token at the end of the table */
+    /* if the token is not found in the symbol table, the function adds the new token at the end of the table */
 
     strcpy(SymbolTable[stLength].token, token);
     SymbolTable[stLength].index = stLength;
@@ -557,7 +557,7 @@ void addToProgramInternalForm(char* token, int stCode) {
     strcpy(ProgramInternalForm[pifLength].token, token);
     ProgramInternalForm[pifLength].symbolTableCode = stCode;
     pifLength++;
-}
+} /* adds a new token to the program internal form */   
 
 void showSymbolTable() {
     printf("--------------- ST ---------------\n");
@@ -1981,13 +1981,13 @@ int yywrap() {}
 int main(int argc, char** argv) {
     FILE *fp;
     if (argc < 2) {
-        printf("Please provide an input file.\n");
+        printf("provide a file.\n");
         return 1;
     }
 
     fp = fopen(argv[1], "r");
     if (!fp) {
-        printf("Failed to open the file %s.\n", argv[1]);
+        printf("mission failed %s.\n", argv[1]);
         return 1;
     }
     
