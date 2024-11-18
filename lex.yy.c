@@ -547,7 +547,7 @@ int addToSymbolTable(char* token) {
     }
     /* if the token is not found in the symbol table, the function adds the new token at the end of the table */
 
-    strcpy(SymbolTable[stLength].token, token);
+    strcpy(SymbolTable[stLength].token, token); /* copies the token to the symbol table */
     SymbolTable[stLength].index = stLength;
     stLength++;
     return stLength - 1; /* returns the index of the newly added token */
@@ -1981,7 +1981,7 @@ int yywrap() {}
 int main(int argc, char** argv) {
     FILE *fp;
     if (argc < 2) {
-        printf("provide a file.\n");
+        printf("provide a file .\n");
         return 1;
     }
 
