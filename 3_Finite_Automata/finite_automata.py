@@ -17,30 +17,31 @@ class FiniteAutomaton:
             return
 
         try:
-            # Parse states
+            # Parse states - reads the first line, splits it by the colon character, and then splits the resulting string by commas to get individual state names
             self.states = set(state.strip() for state in lines[0].strip().split(":")[1].split(","))
-            # Parse alphabet
+            # Parse alphabet - plits the line by the colon character and then by commas to get individual symbols
             self.alphabet = set(symbol.strip() for symbol in lines[1].strip().split(":")[1].split(","))
             # Parse transitions
             for line in lines[2:]:
                 line = line.strip()
+                    
                 if line.startswith("start:"):
-                    self.start_state = line.split(":")[1].strip()
+                    self.start_state = line.split(":")[1].strip()                       #sets the start state or final states accordingly
                 elif line.startswith("final:"):
                     self.final_states = set(state.strip() for state in line.split(":")[1].split(","))
                 elif "->" in line:
-                    match = re.match(r"(\w+),\s*([^\s]+)\s*->\s*(\w+)", line)
+                    match = re.match(r"(\w+),\s*([^\s]+)\s*->\s*(\w+)", line)           #regular expression to match the transition pattern
                     if match:
-                        state, symbol, next_state = map(str.strip, match.groups())
+                        state, symbol, next_state = map(str.strip, match.groups())      #extracts the state, symbol, and next state from the match
                         if state not in self.transitions:
-                            self.transitions[state] = {}
-                        self.transitions[state][symbol] = next_state
+                            self.transitions[state] = {}                                #creates a new dictionary for the state if it doesn't exist
+                        self.transitions[state][symbol] = next_state 
         except IndexError:
             print("Error: Invalid file format. Ensure the file follows the expected structure.")
             return
 
     def display(self):
-        print("\nFinite Automaton:")
+        print("\nFinite Automata:")
         print("States:", self.states)
         print("Alphabet:", self.alphabet)
         print("Transitions:")
@@ -75,7 +76,7 @@ if __name__ == "__main__":
     fa = FiniteAutomaton()
     fa.load_from_file("FA.in")
     if not fa.states or not fa.alphabet:  # Ensure FA was loaded properly
-        print("Failed to load Finite Automaton. Exiting...")
+        print("Failed to load Finite Automata. Exiting...")
         exit(1)
 
     fa.display()
@@ -87,6 +88,6 @@ if __name__ == "__main__":
             print("Exiting...")
             break
         if fa.is_valid_token(test_string):
-            print(f"The string '{test_string}' is a valid token.")
+            print(f"{test_string}' is a valid token.")
         else:
-            print(f"The string '{test_string}' is NOT a valid token.")
+            print(f"{test_string}' is NOT a valid token.")
