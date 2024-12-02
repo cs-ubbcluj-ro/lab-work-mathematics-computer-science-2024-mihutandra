@@ -3,10 +3,12 @@
 3. Peoductions: Non-terminal followed by "->" and a sequence of terminals and non-terminals eg:<program> -> "int" <decllist> ";" <cmpdstmt> "."
 4. Start symbol: <program>
 
-Non-terminal symbols: <program>, <decllist>, <declaration>, <type>, <compoundstmt>, <stmtlist>, <stmt>, <simplstmt>, <assignstmt>, <iostmt>, <expression>, <term>, <factor>, <condition>, <relation>, <structstmt>, <ifstmt>, <whilestmt>, <structdecl>, <identifier>, <letter_digit_sequence>, <letter>, <digit>, <intconst>, <nr>, <string>, <char>, <boolconst>
-Terminals: "VARIABILE", "BOOL", "ÎNTREG", "ÎNCEPE", "TERMINĂ", "CITESTE", "SCRIE", "+", "*", "MOD", "DACĂ", "ATUNCI", "ALTFEL", "CÂT", "EXECUTĂ", "STRUCTURĂ", "{", "}", "(", ")", ":=", ";", ".", "<", "<=", "=", "<>", ">=", ">", "ȘI", "ADEVARAT", "FALS", "a", "b", ..., "z", "î", "ș", "ț", "â", "0", "1", ..., "9"
+5. Non-terminal symbols: <program>, <decllist>, <declaration>, <type>, <compoundstmt>, <stmtlist>, <stmt>, <simplstmt>, <assignstmt>, <iostmt>, 
+<expression>, <term>, <factor>, <condition>, <relation>, <structstmt>, <ifstmt>, <whilestmt>, <structdecl>, <identifier>, <letter_digit_sequence>, <letter>, <digit>, <intconst>, <nr>, <string>, <char>, <boolconst>
+6. Terminals: "VARIABILE", "BOOL", "ÎNTREG", "ÎNCEPE", "TERMINĂ", "CITESTE", "SCRIE", "+", "*", "MOD", "DACĂ", "ATUNCI", "ALTFEL", "CÂT", "EXECUTĂ", 
+"STRUCTURĂ", "{", "}", "(", ")", ":=", ";", ".", "<", "<=", "=", "<>", ">=", ">", "ȘI", "ADEVARAT", "FALS", "a", "b", ..., "z", "î", "ș", "ț", "â", "0", "1", ..., "9"
 
-PRODUCTIONS:
+7. PRODUCTIONS:
 <program> -> "VARIABILE" <decllist> ";" <cmpdstmt> "."
 
 <decllist> -> <declaration> | <declaration> <decllist>
@@ -19,9 +21,9 @@ PRODUCTIONS:
 <stmt> -> <simplstmt> | <structstmt>
 <simplstmt> -> <assignstmt>  | <iostmt>
 <assignstmt> -> <identifier> ":=" <expression>
-<iostmt> :-> "CITESTE" "(" <identifier> ")" | "SCRIE" "(" <expression> ")"
+<iostmt> -> "CITESTE" "(" <identifier> ")" | "SCRIE" "(" <expression> ")"
 
-<expression> -><expression> "+" <term> | <term>
+<expression> -> <expression> "+" <term> | <term>
 
 <term> -> <term> "*" <factor> | <factor>
 
