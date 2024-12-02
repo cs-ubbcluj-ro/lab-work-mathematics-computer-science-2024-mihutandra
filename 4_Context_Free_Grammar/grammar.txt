@@ -1,21 +1,15 @@
 <program> ::= "VARIABILE" <decllist> ";" <cmpdstmt> "."
 
 <decllist> ::= <declaration> | <declaration> <decllist>
-
 <declaration> ::= <identifier> ":" <type>
 
 <type> ::= "BOOL" | "ÎNTREG"
 
 <cmpdstmt> ::= "ÎNCEPE" <stmtlist> "TERMINĂ"
-
 <stmtlist> ::= <stmt> | <stmt> ";" <stmtlist>
-
 <stmt> ::= <simplstmt> | <structstmt>
-
 <simplstmt> ::= <assignstmt>  | <iostmt>
-
 <assignstmt> ::= <identifier> ":=" <expression>
-
 <iostmt> ::= "CITESTE" "(" <identifier> ")" | "SCRIE" "(" <expression> ")"
 
 <expression> ::= <expression> "+" <term> | <term>
@@ -25,25 +19,27 @@
 <factor> ::= "(" <expression> ")" | <identifier> | <intconst> | <boolconst> | <factor> "MOD" <factor>
 
 <condition> ::= <expression> <relation> <expression> | <expression> "ȘI" <expression>
-
 <relation> ::= "<" | "<=" | "=" | "<>" | ">=" | ">"
 
 <structstmt> ::= <ifstmt> | <whilestmt> | <cmpdstmt>
-
 <ifstmt> ::= "DACĂ" <condition> "ATUNCI" <stmt> | "DACĂ" <condition> "ATUNCI" <stmt> "ALTFEL" <stmt>
-
 <whilestmt> ::= "CÂT" <condition> "EXECUTĂ" <stmt>
+
+<structdecl> ::= "STRUCTURĂ" <identifier> "{" <fieldlist> "}"
+<fieldlist> ::= <field> | <field> ";" <fieldlist>
+<field> ::= <identifier> ":" <type>
+<accessfield> ::= <identifier> "." <identifier>
 
 <identifier> ::= <letter> | <letter> <letter_digit_sequence>
 
 <letter_digit_sequence> ::= <letter> | <digit> | <letter_digit_sequence> <letter> | <letter_digit_sequence> <digit>
-
 <letter> ::= "a" | "b" | ... | "z"  | "î" | "ș" | "ț" | "â"
-
 <digit> ::= "0" | "1"  | ... | "9"
 
-<intconst> ::= "+" <no> | "-" <no> | <no>
+<intconst> ::= "+" <nr> | "-" <nr> | <nr>
+<nr> ::= <digit> | <digit> <nr>
 
-<no> ::= <digit> | <digit> <no>
+<string> ::= <char> | <char> <string>
+<char> ::= <letter> | <digit>
 
 <boolconst> ::= "ADEVARAT" | "FALS"
