@@ -9,7 +9,7 @@
 "STRUCTURĂ", "{", "}", "(", ")", ":=", ";", ".", "<", "<=", "=", "<>", ">=", ">", "ȘI", "ADEVARAT", "FALS", "a", "b", ..., "z", "î", "ș", "ț", "â", "0", "1", ..., "9"
 
 7. PRODUCTIONS:
-<program> -> "VARIABILE" <decllist> ";" <cmpdstmt> "."
+<program> -> "PROGRAM" <decllist> ";" <cmpdstmt> "."
 
 <decllist> -> <declaration> | <declaration> <decllist>
 <declaration> -> <identifier> ":" <type>
@@ -35,6 +35,7 @@
 <structstmt> -> <ifstmt> | <whilestmt> | <cmpdstmt>
 <ifstmt> -> "DACĂ" <condition> "ATUNCI" <stmt> | "DACĂ" <condition> "ATUNCI" <stmt> "ALTFEL" <stmt>
 <whilestmt> -> "CÂT" <condition> "EXECUTĂ" <stmt>
+<for> -> "PENTRU" <identifier> "DE LA" <intconst> "PÂNĂ LA" <intconst> "EXECUTĂ" <stmt>
 
 <structdecl> -> "STRUCTURĂ" <identifier> "{" <fieldlist> "}"
 
