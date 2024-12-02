@@ -1,45 +1,51 @@
-<program> ::= "VARIABILE" <decllist> ";" <cmpdstmt> "."
+1. Non-terminals: Enclosed in < > eg:<program>
+2. Terminals: strings in quotes eg:"int"
+3. Peoductions: Non-terminal followed by "->" and a sequence of terminals and non-terminals eg:<program> -> "int" <decllist> ";" <cmpdstmt> "."
+4. Start symbol: <program>
 
-<decllist> ::= <declaration> | <declaration> <decllist>
-<declaration> ::= <identifier> ":" <type>
+Non-terminal symbols: <program>, <decllist>, <declaration>, <type>, <compoundstmt>, <stmtlist>, <stmt>, <simplstmt>, <assignstmt>, <iostmt>, <expression>, <term>, <factor>, <condition>, <relation>, <structstmt>, <ifstmt>, <whilestmt>, <structdecl>, <identifier>, <letter_digit_sequence>, <letter>, <digit>, <intconst>, <nr>, <string>, <char>, <boolconst>
+Terminals: "VARIABILE", "BOOL", "ÎNTREG", "ÎNCEPE", "TERMINĂ", "CITESTE", "SCRIE", "+", "*", "MOD", "DACĂ", "ATUNCI", "ALTFEL", "CÂT", "EXECUTĂ", "STRUCTURĂ", "{", "}", "(", ")", ":=", ";", ".", "<", "<=", "=", "<>", ">=", ">", "ȘI", "ADEVARAT", "FALS", "a", "b", ..., "z", "î", "ș", "ț", "â", "0", "1", ..., "9"
 
-<type> ::= "BOOL" | "ÎNTREG"
+PRODUCTIONS:
+<program> -> "VARIABILE" <decllist> ";" <cmpdstmt> "."
 
-<cmpdstmt> ::= "ÎNCEPE" <stmtlist> "TERMINĂ"
-<stmtlist> ::= <stmt> | <stmt> ";" <stmtlist>
-<stmt> ::= <simplstmt> | <structstmt>
-<simplstmt> ::= <assignstmt>  | <iostmt>
-<assignstmt> ::= <identifier> ":=" <expression>
-<iostmt> ::= "CITESTE" "(" <identifier> ")" | "SCRIE" "(" <expression> ")"
+<decllist> -> <declaration> | <declaration> <decllist>
+<declaration> -> <identifier> ":" <type>
 
-<expression> ::= <expression> "+" <term> | <term>
+<type> -> "BOOL" | "ÎNTREG"
 
-<term> ::= <term> "*" <factor> | <factor>
+<compoundstmt> -> "ÎNCEPE" <stmtlist> "TERMINĂ"
+<stmtlist> -> <stmt> | <stmt> ";" <stmtlist>
+<stmt> -> <simplstmt> | <structstmt>
+<simplstmt> -> <assignstmt>  | <iostmt>
+<assignstmt> -> <identifier> ":=" <expression>
+<iostmt> :-> "CITESTE" "(" <identifier> ")" | "SCRIE" "(" <expression> ")"
 
-<factor> ::= "(" <expression> ")" | <identifier> | <intconst> | <boolconst> | <factor> "MOD" <factor>
+<expression> -><expression> "+" <term> | <term>
 
-<condition> ::= <expression> <relation> <expression> | <expression> "ȘI" <expression>
-<relation> ::= "<" | "<=" | "=" | "<>" | ">=" | ">"
+<term> -> <term> "*" <factor> | <factor>
 
-<structstmt> ::= <ifstmt> | <whilestmt> | <cmpdstmt>
-<ifstmt> ::= "DACĂ" <condition> "ATUNCI" <stmt> | "DACĂ" <condition> "ATUNCI" <stmt> "ALTFEL" <stmt>
-<whilestmt> ::= "CÂT" <condition> "EXECUTĂ" <stmt>
+<factor> -> "(" <expression> ")" | <identifier> | <intconst> | <boolconst> | <factor> "MOD" <factor>
 
-<structdecl> ::= "STRUCTURĂ" <identifier> "{" <fieldlist> "}"
-<fieldlist> ::= <field> | <field> ";" <fieldlist>
-<field> ::= <identifier> ":" <type>
-<accessfield> ::= <identifier> "." <identifier>
+<condition> -> <expression> <relation> <expression> | <expression> "ȘI" <expression>
+<relation> -> "<" | "<=" | "=" | "<>" | ">=" | ">"
 
-<identifier> ::= <letter> | <letter> <letter_digit_sequence>
+<structstmt> -> <ifstmt> | <whilestmt> | <cmpdstmt>
+<ifstmt> -> "DACĂ" <condition> "ATUNCI" <stmt> | "DACĂ" <condition> "ATUNCI" <stmt> "ALTFEL" <stmt>
+<whilestmt> -> "CÂT" <condition> "EXECUTĂ" <stmt>
 
-<letter_digit_sequence> ::= <letter> | <digit> | <letter_digit_sequence> <letter> | <letter_digit_sequence> <digit>
-<letter> ::= "a" | "b" | ... | "z"  | "î" | "ș" | "ț" | "â"
-<digit> ::= "0" | "1"  | ... | "9"
+<structdecl> -> "STRUCTURĂ" <identifier> "{" <fieldlist> "}"
 
-<intconst> ::= "+" <nr> | "-" <nr> | <nr>
-<nr> ::= <digit> | <digit> <nr>
+<identifier> -> <letter> | <letter> <letter_digit_sequence>
 
-<string> ::= <char> | <char> <string>
-<char> ::= <letter> | <digit>
+<letter_digit_sequence> -> <letter> | <digit> | <letter_digit_sequence> <letter> | <letter_digit_sequence> <digit>
+<letter> -> "a" | "b" | ... | "z"  | "î" | "ș" | "ț" | "â"
+<digit> -> "0" | "1"  | ... | "9"
 
-<boolconst> ::= "ADEVARAT" | "FALS"
+<intconst> -> "+" <nr> | "-" <nr> | <nr>
+<nr> -> <digit> | <digit> <nr>
+
+<string> -> <char> | <char> <string>
+<char> -> <letter> | <digit>
+
+<boolconst> -> "ADEVARAT" | "FALS"
