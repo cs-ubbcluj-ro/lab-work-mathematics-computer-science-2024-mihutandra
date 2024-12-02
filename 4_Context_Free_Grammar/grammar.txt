@@ -29,7 +29,7 @@
 
 <factor> -> "(" <expression> ")" | <identifier> | <intconst> | <boolconst> | <factor> "MOD" <factor>
 
-<condition> -> <expression> <relation> <expression> | <expression> "ȘI" <expression>
+<condition> -> <expression> <relation> <expression> | <expression> "ȘI" <expression> |<expression> "SAU" <expression>
 <relation> -> "<" | "<=" | "=" | "<>" | ">=" | ">"
 
 <structstmt> -> <ifstmt> | <whilestmt> | <cmpdstmt>
@@ -41,7 +41,7 @@
 <identifier> -> <letter> | <letter> <letter_digit_sequence>
 
 <letter_digit_sequence> -> <letter> | <digit> | <letter_digit_sequence> <letter> | <letter_digit_sequence> <digit>
-<letter> -> "a" | "b" | ... | "z"  | "î" | "ș" | "ț" | "â"
+<letter> -> "a" | "b" | ... | "z"  | "î" | "ș" | "ț" | "â" | "ă"
 <digit> -> "0" | "1"  | ... | "9"
 
 <intconst> -> "+" <nr> | "-" <nr> | <nr>
