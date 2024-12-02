@@ -24,9 +24,7 @@
 <iostmt> -> "CITESTE" "(" <identifier> ")" | "SCRIE" "(" <expression> ")"
 
 <expression> -> <expression> "+" <term> | <term>
-
 <term> -> <term> "*" <factor> | <factor>
-
 <factor> -> "(" <expression> ")" | <identifier> | <intconst> | <boolconst> | <factor> "MOD" <factor>
 
 <condition> -> <expression> <relation> <expression> | <expression> "ȘI" <expression> |<expression> "SAU" <expression>
