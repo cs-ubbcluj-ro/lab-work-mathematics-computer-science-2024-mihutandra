@@ -1,3 +1,4 @@
+
 <program> ::= <definition_list> <statement_list>
 
 <definition_list> ::= <definition> ";" | <definition> ";" <definition_list>
@@ -42,3 +43,122 @@
 
 <identifier> ::= <letter> | <letter> <letter_digit_sequence>
 <letter_digit_sequence> ::= <letter> | <digit> | <letter_digit_sequence> <letter> | <letter_digit_sequence> <digit>
+
+
+
+
+
+
+
+
+/*
+ *   DOCUMENTATION
+ * 
+ * <program>
+ *   - A program consists of a list of definitions followed by a list of statements.
+ * 
+ * <definition_list> 
+ *   - A list of definitions separated by semicolons.
+ * 
+ * <definition>
+ *   - A definition can be a type followed by an identifier or an array definition.
+ * 
+ * <array_definition> 
+ *   - An array definition consists of an identifier followed by a dimension in square brackets.
+ * 
+ * <type> 
+ *   - The types available in the language: character, integer, string, and boolean.
+ * 
+ * <dimension>
+ *   - The dimension of an array, represented by digits.
+ * 
+ * <digits> 
+ *   - A sequence of digits.
+ * 
+ * <digit> 
+ *   - A single digit from 0 to 9.
+ * 
+ * <statement_list> 
+ *   - A list of statements.
+ * 
+ * <statement> 
+ *   - A statement can be an atomic statement or a structured statement.
+ * 
+ * <atomic_statement> 
+ *   - An atomic statement can be a definition, an assignment, or an I/O statement.
+ * 
+ * <assignment> 
+ *   - An assignment statement assigns an expression to an identifier.
+ * 
+ * <io_statement> 
+ *   - An I/O statement can be a read or write operation.
+ * 
+ * <expression> 
+ *   - An expression can be a term or an expression followed by an operator and a term.
+ * 
+ * <op1> 
+ *   - The operators for addition and subtraction.
+ * 
+ * <term> 
+ *   - A term can be a factor or a term followed by an operator and a factor.
+ * 
+ * <op2> 
+ *   - The operators for multiplication, division, integer division, and modulus.
+ * 
+ * <factor> 
+ *   - A factor can be an expression in parentheses, an identifier, an integer constant, a boolean constant, a string, or a factor followed by the MOD operator and another factor.
+ * 
+ * <condition> 
+ *   - A condition can be a comparison between two expressions or a logical AND between two expressions.
+ * 
+ * <relation> 
+ *   - The relational operators for comparisons.
+ * 
+ * <intconst> 
+ *   - An integer constant can be a positive or negative number or just a number.
+ * 
+ * <number> 
+ *   - A number is a sequence of digits.
+ * 
+ * <boolconst> 
+ *   - The boolean constants: true and false.
+ * 
+ * <string> 
+ *   - A string is a sequence of characters enclosed in single quotes.
+ * 
+ * <char>
+ *   - A character can be a letter or a digit.
+ * 
+ * <letter> 
+ *   - A letter can be any lowercase letter from the Romanian alphabet.
+ * 
+ * <struct_statement> 
+ *   - A structured statement can be an if statement, a while statement, or a do-while statement.
+ * 
+ * <if_statement> 
+ *   - An if statement with an optional else clause.
+ * 
+ * <while_statement>
+ *   - A while loop that repeats as long as the condition is true.
+ * 
+ * <do_while_statement> 
+ *   - A do-while loop that executes the statement list at least once before checking the condition.
+ * 
+ * <struct_definition> 
+ *   - A structure definition with a list of fields.
+ * 
+ * <field_list> 
+ *   - A list of fields separated by semicolons.
+ * 
+ * <field> 
+ *   - A field in a structure, consisting of a type and an identifier.
+ * 
+ * <access_field> 
+ *   - Accessing a field of a structure using the dot notation.
+ * 
+ * <identifier> 
+ *   - An identifier starts with a letter and can be followed by a sequence of letters and digits.
+ * 
+ * <letter_digit_sequence>
+ *   - A sequence of letters and digits.
+ */
