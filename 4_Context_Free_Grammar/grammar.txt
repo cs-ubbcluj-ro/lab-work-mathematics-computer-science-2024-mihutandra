@@ -1,0 +1,44 @@
+<program> ::= <definition_list> <statement_list>
+
+<definition_list> ::= <definition> ";" | <definition> ";" <definition_list>
+<definition> ::= <type> <identifier> | <type> <array_definition>
+<array_definition> ::= <identifier> "[" <dimension> "]"
+
+<type> ::= "caracter" | "întreg" | "șir" | "bool"
+<dimension> ::= <digits>
+<digits> ::= <digit> | <digit> <digits>
+<digit> ::= "0" | "1" | ... | "9"
+
+<statement_list> ::= <statement> | <statement> <statement_list>
+<statement> ::= <atomic_statement> | <struct_statement>
+<atomic_statement> ::= <definition> | <assignment> | <io_statement>
+<assignment> ::= <identifier> "=" <expression> ";"
+<io_statement> ::= "citește" "(" <identifier> ")" ";" | "afișează" "(" <expression> ")" ";"
+
+<expression> ::= <expression> <op1> <term> | <term>
+<op1> ::= "+" | "-"
+<term> ::= <term> <op2> <factor> | <factor>
+<op2> ::= "*" | "/" | "//" | "%"
+<factor> ::= "(" <expression> ")" | <identifier> | <intconst> | <boolconst> | <string> | <factor> "MOD" <factor>
+
+<condition> ::= <expression> <relation> <expression> | <expression> "AND" <expression>
+<relation> ::= "<" | "<=" | "=" | "!=" | ">=" | ">"
+<intconst> ::= "+" <number> | "-" <number> | <number>
+<number> ::= <digit> | <digit> <number>
+<boolconst> ::= "adevărat" | "fals"
+<string> ::= "'" <char> {<char>} "'"
+<char> ::= <letter> | <digit>
+<letter> ::= "a" | "b" | ... | "z" | "ă" | "î" | "ș" | "ț" | "â"
+
+<struct_statement> ::= <if_statement> | <while_statement> | <do_while_statement>
+<if_statement> ::= "dacă" "(" <condition> ")" "{" <statement_list> "}" ["altfel" "{" <statement_list> "}"]
+<while_statement> ::= "cât" "(" <condition> ")" "{" <statement_list> "}"
+<do_while_statement> ::= "execută" "{" <statement_list> "}" "cât" "(" <condition> ")" ";"
+
+<struct_definition> ::= "structură" <identifier> "{" <field_list> "}"
+<field_list> ::= <field> ";" | <field> ";" <field_list>
+<field> ::= <type> <identifier>
+<access_field> ::= <identifier> "." <identifier>
+
+<identifier> ::= <letter> | <letter> <letter_digit_sequence>
+<letter_digit_sequence> ::= <letter> | <digit> | <letter_digit_sequence> <letter> | <letter_digit_sequence> <digit>
