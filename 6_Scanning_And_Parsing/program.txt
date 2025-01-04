@@ -1,0 +1,28 @@
+întreg este_prim(întreg n) {
+    întreg i;
+    dacă (n <= 1) {
+        returnează fals;
+    }
+    pentru (i = 2; i * i <= n; i += 1) {
+        dacă (n % i == 0) {
+            returnează fals;
+        }
+    }
+    returnează adevărat;
+}
+
+
+    întreg k, count, num;
+    citește(k);  
+   
+    count = 0;
+    num = 2;
+
+    cât (count < k) {
+        dacă (este_prim(num) == adevărat) {
+            afișează(num); 
+           count += 1;
+        }
+        num += 1;
+    }
+}
