@@ -19,12 +19,12 @@ void record_production(const char *production_name) {
 /* Tokens */
 %token INT BOOL CHAR STRING IF ELSE CONST DO WHILE CIN COUT RETURN FOR
 %token IDENTIFIER INT_CONST STRING_LITERAL TRUE FALSE
-%token PLUS MINUS MUL DIV ASSIGN EQ NEQ LT LTE GT GTE PLUSEQ MINUSEQ MULEQ DIVEQ
-%token SEMICOLON LBRACE RBRACE LPAREN RPAREN LSQUARE RSQUARE
+%token PLUS MINUS MUL DIV ASSIGN EQ NEQ LT LTE GT GTE MOD AND OR NOT
+%token SEMICOLON LBRACE RBRACE LPAREN RPAREN STREAMOUT STREAMIN MAIN
 
 /* Precedence and associativity */
 %left PLUS MINUS
-%left MUL DIV
+%left MUL DIV MOD
 %nonassoc LT LTE GT GTE EQ NEQ
 %nonassoc ELSE
 
@@ -78,7 +78,7 @@ assignment:
     IDENTIFIER ASSIGN expression SEMICOLON {
         record_production("assignment");
     }
-  | IDENTIFIER PLUSEQ expression SEMICOLON {
+  | IDENTIFIER PLUS ASSIGN expression SEMICOLON {
         record_production("compound_assignment");
     }
     ;

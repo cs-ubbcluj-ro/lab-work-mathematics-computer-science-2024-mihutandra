@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#define YYDEBUG 1
 
 extern int yylex();
 extern int yyparse();
@@ -26,6 +27,7 @@ int prod_count = 0;
 %token GT LT GTE LTE EQ NEQ
 %token BOOL CHAR STRING INT TRUE FALSE
 %token RSHIFT LSHIFT
+%token MAIN
 
 /* Precedence and associativity */
 %left OR
