@@ -21,6 +21,7 @@ void yyerror(const char *s);
 "afișează"   return COUT;
 "constanta"  return CONST;
 "pentru"     return FOR;
+"main"       return MAIN;
 
 "adevărat"   return TRUE;
 "fals"       return FALSE;

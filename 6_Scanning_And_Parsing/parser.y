@@ -13,6 +13,7 @@ void yyerror(const char *s);
 char *last_production = "None";
 void record_production(const char *production_name) {
     last_production = production_name;
+    printf("Production used: %s\n", production_name);
 }
 %}
 
@@ -21,11 +22,14 @@ void record_production(const char *production_name) {
 %token IDENTIFIER INT_CONST STRING_LITERAL TRUE FALSE
 %token PLUS MINUS MUL DIV ASSIGN EQ NEQ LT LTE GT GTE MOD AND OR NOT
 %token SEMICOLON LBRACE RBRACE LPAREN RPAREN STREAMOUT STREAMIN MAIN
+%token LSQUARE RSQUARE COMMA
 
 /* Precedence and associativity */
+%left OR
+%left AND
+%nonassoc LT LTE GT GTE EQ NEQ
 %left PLUS MINUS
 %left MUL DIV MOD
-%nonassoc LT LTE GT GTE EQ NEQ
 %nonassoc ELSE
 
 %start program
@@ -53,7 +57,9 @@ statement:
   | if_statement
   | while_statement
   | do_while_statement
-  | for_statement {
+  | for_statement
+  | return_statement
+  | compound_statement {
         record_production("statement");
     }
     ;
@@ -62,8 +68,15 @@ declaration:
     type IDENTIFIER SEMICOLON {
         record_production("declaration");
     }
-  | type IDENTIFIER LSQUARE INT_CONST RSQUARE SEMICOLON {
-        record_production("array_declaration");
+  | type IDENTIFIER COMMA declaration_tail SEMICOLON {
+        record_production("multiple_declaration");
+    }
+    ;
+
+declaration_tail:
+    IDENTIFIER
+  | IDENTIFIER COMMA declaration_tail {
+        record_production("declaration_tail");
     }
     ;
 
@@ -81,16 +94,20 @@ assignment:
   | IDENTIFIER PLUS ASSIGN expression SEMICOLON {
         record_production("compound_assignment");
     }
+  | IDENTIFIER MINUS ASSIGN expression SEMICOLON {
+        record_production("compound_assignment");
+    }
     ;
 
 io_statement:
-    CIN STREAMOUT IDENTIFIER SEMICOLON {
+    CIN STREAMOUT IDENTIFIER SEMICOLON {  // Reading input
         record_production("cin_statement");
     }
-  | COUT STREAMIN IDENTIFIER SEMICOLON {
+  | COUT STREAMIN expression SEMICOLON {  // Output with expressions
         record_production("cout_statement");
     }
     ;
+
 
 if_statement:
     IF LPAREN condition RPAREN LBRACE statement_list RBRACE {
@@ -119,6 +136,18 @@ for_statement:
     }
     ;
 
+return_statement:
+    RETURN expression SEMICOLON {
+        record_production("return_statement");
+    }
+    ;
+
+compound_statement:
+    LBRACE statement_list RBRACE {
+        record_production("compound_statement");
+    }
+    ;
+
 condition:
     expression
   | expression EQ expression
@@ -129,33 +158,34 @@ condition:
   | expression GTE expression {
         record_production("condition");
     }
+  | condition AND condition
+  | condition OR condition
+  | NOT condition {
+        record_production("logical_condition");
+    }
     ;
 
 expression:
     expression PLUS term
   | expression MINUS term
-  | term {
-        record_production("expression");
-    }
+  | term { record_production("expression"); }
     ;
 
 term:
     term MUL factor
   | term DIV factor
-  | factor {
-        record_production("term");
-    }
+  | term MOD factor
+  | factor { record_production("term"); }
     ;
 
 factor:
     LPAREN expression RPAREN
   | IDENTIFIER
   | INT_CONST
-  | STRING_LITERAL {
-        record_production("factor");
-    }
+  | STRING_LITERAL
+  | TRUE
+  | FALSE { record_production("factor"); }
     ;
-
 %%
 
 void yyerror(const char *s) {
